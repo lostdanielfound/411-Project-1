@@ -7,9 +7,10 @@ class Board
 private:
     /* attributes of the board
     will be stored here. */
-    char board[3][3] = { {'-', '-', '-'},
-                         {'-', '-', '-'},
-                         {'-', '-', '-'}};
+    char board[WIDTH][LENGTH] = { {'-', '-', '-'},
+                                {'-', '-', '-'},
+                                {'-', '-', '-'}};
+
     int turnCount = 0; 
 public:
     Board();
@@ -17,7 +18,7 @@ public:
     void Draw(); 
     int Insert(int position, char symbol);
     void reset(); 
-
+    bool CheckState(); 
 };
 
 #endif

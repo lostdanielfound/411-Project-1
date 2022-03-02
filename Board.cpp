@@ -60,6 +60,7 @@ int Board::Insert(int position, char symbol)
     if (position > 9 || position < 1)
     {
         /* Out of bounds checking */
+        std::cout << "\nIllegal move, please try a different spot...\n";
         return -1; 
     }
 
@@ -79,27 +80,27 @@ int Board::Insert(int position, char symbol)
     else if (position >= 4 && position <= 6)
     {
         /* Inserting in the second row */
-        if (board[0][(position % 3)- 1] != '-')
+        if (board[1][(position % 4)] != '-')
         {
             /* There is already something there, ILLEGAL MOVE */
             std::cout << "\nIllegal move, please try a different spot...\n";
             return -1;
         }
 
-        board[1][(position % 3) - 1] = symbol; 
+        board[1][(position % 4)] = symbol; 
         turnCount++;
     }
     else if (position >= 7 && position <= 9)
     {
         /* Inserting in the thrid row */
-        if (board[0][(position % 3)- 1] != '-')
+        if (board[2][(position % 6) - 1] != '-')
         {
             /* There is already something there, ILLEGAL MOVE */
             std::cout << "\nIllegal move, please try a different spot...\n";
             return -1;
         }
         
-        board[2][(position % 3) - 1] = symbol;
+        board[2][(position % 6) - 1] = symbol;
         turnCount++;
     }
 
@@ -112,4 +113,35 @@ void Board::reset()
     //board = {"", "", "",
     //        "", "", "",
     //        "", "", ""};
+}
+
+bool Board::CheckState()
+{
+    for (int i = 0; i < WIDTH; i++)
+    {
+        if ((board[i][0] == board[i][1] && (board[i][0] != '-')) && board[i][0] == board[i][2])
+        {
+            /* Check the rows of the board to see if someone won */
+            return true; 
+        }
+        else if ((board[0][i] == board[1][i] && (board[0][i] != '-')) && board[0][i] == board[2][i])
+        {
+            /* Check the columns of the board to see if someone won */
+            return true; 
+        }
+    }
+
+
+    if ((board[0][0] == board[1][1] && (board[0][0] != '-')) && board[0][0] == board[2][2])
+    {
+        /* Checking left diagonals now */
+        return true;
+    }
+    else if ((board[0][2] == board[1][1] && (board[0][2] != '-')) && board[0][2] == board[2][0])
+    {
+        /* Checking right diagonals now */
+        return true; 
+    }
+    
+    return false; //No winner yet   
 }
