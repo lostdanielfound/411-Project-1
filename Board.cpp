@@ -1,15 +1,35 @@
 #include <iostream>
 #include "Board.h"
 
-Board::Board()
+Board::Board(int dimension)
 {
+    board = new char *[dimension];
 
+    for (int i = 0; i < dimension; i++)
+    {
+        /* Making the two dimension array */
+        board[i] = new char[dimension];
+    }
+
+    for (int i = 0; i < dimension; i++)
+    {
+        for (int j = 0; j < dimension; j++)
+        {
+            /* Filling the 2d array with '-' */
+            board[i][j] = '-';
+        }
+    }
+
+    this->dimension = dimension; 
 }
 
 Board::~Board()
 {
-
+    for (int i = 0; i < dimension; i++) { delete [] board[i]; } 
+    delete [] board; 
 }
+
+
 
 /**
  * @brief Simply draws out the current state of the 
@@ -26,10 +46,10 @@ Board::~Board()
 void Board::Draw()
 {
     std::cout << "----Turn  " << turnCount << "----\n";
-    for (int i = 0; i < LENGTH; i++)
+    for (int i = 0; i < dimension; i++)
     {
         std::cout << "|";
-        for (int j = 0; j < WIDTH; j++)
+        for (int j = 0; j < dimension; j++)
         {
             if (board[i][j] == '-')
             {
@@ -117,7 +137,7 @@ void Board::reset()
 
 bool Board::CheckState()
 {
-    for (int i = 0; i < WIDTH; i++)
+    for (int i = 0; i < dimension; i++)
     {
         if ((board[i][0] == board[i][1] && (board[i][0] != '-')) && board[i][0] == board[i][2])
         {

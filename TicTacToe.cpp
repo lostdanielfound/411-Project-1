@@ -2,19 +2,16 @@
 #include "Board.h"
 #include "Player.h"
 
-void Introduction(Player*, Player*);
+int Introduction(Player*, Player*);
 int Turn(Player*, Player*);
 
 int main()
 {
-
-    Board playingBoard;
     Player *player1 = new Player();
     Player *player2 = new Player();
     player2->priority = false; 
 
-    Introduction(player1, player2);
-
+    Board playingBoard(Introduction(player1, player2));
     while (1)
     {
         /* player1 should go first */
@@ -47,12 +44,12 @@ int main()
     return 0; 
 }
 
-void Introduction(Player* p1, Player* p2) 
+int Introduction(Player* p1, Player* p2) 
 {
     int choice = -1; 
     std::cout << "-----Tic-Tac-Toe-----\n";
     std::cout << "Welcome to the Tic-Tac-Toe game,\nPlayer 1 please choose you symbol.\n";
-    std::cout << "\t1 for X\t2 for O\n:";
+    std::cout << "\t1 for X\t2 for O\n: ";
     std::cin >> choice;
 
     if (choice == 1)
@@ -67,7 +64,11 @@ void Introduction(Player* p1, Player* p2)
         p2->symbol = 'X';
     }
 
-    return;
+    /* Getting the N dimension of the playboard */
+    std::cout << "\nNow please enter the playboard's dimension\nyou would want to play in the game in.\n: ";
+    std::cin >> choice; 
+
+    return choice;
 }
 
 int Turn(Player* p1, Player* p2)
