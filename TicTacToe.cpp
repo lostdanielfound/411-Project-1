@@ -41,6 +41,9 @@ int main()
         } 
     }
 
+    delete player1; 
+    delete player2; 
+
     return 0; 
 }
 
@@ -67,6 +70,7 @@ int Introduction(Player* p1, Player* p2)
     /* Getting the N dimension of the playboard */
     std::cout << "\nNow please enter the playboard's dimension\nyou would want to play in the game in.\n: ";
     std::cin >> choice; 
+    std::cout << "\n";
 
     return choice;
 }
