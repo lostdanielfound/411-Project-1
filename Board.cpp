@@ -65,9 +65,13 @@ void Board::Draw()
 /**
  * @brief Inserts the players symbol X or O 
  * into the 3x3 board at position from 1-9
- * | 1 | 2 | 3 |
- * | 4 | 5 | 6 |
+ * | 1 | 2 | 3 | 
+ * | 4 | 5 | 6 | 
  * | 7 | 8 | 9 | 
+ * 
+ * | [0][0] | [0][1] | [0][2] | 
+ * | [1][0] | [1][1] | [1][2] | 
+ * | [2][0] | [2][1] | [2][2] | 
  * 
  * Or, given a nxn board, the position marks will 
  * follow the this pattern
@@ -177,7 +181,7 @@ bool Board::CheckState()
         /* increment count if we found a match */
         for (int j = 1; j < dimension; j++) 
         { 
-            if (board[0][i] == board[i][j] && (board[0][i] != '-')) { count++; } 
+            if (board[0][i] == board[j][i] && (board[0][i] != '-')) { count++; } 
         }
         if (count == dimension-1) { return true; } //We have a winner!
         count = 0;
