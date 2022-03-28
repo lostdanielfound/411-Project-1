@@ -50,8 +50,8 @@ int main()
 int Introduction(Player* p1, Player* p2) 
 {
     int choice = -1; 
-    std::cout << "-----Tic-Tac-Toe-----\n";
-    std::cout << "Welcome to the Tic-Tac-Toe game,\nPlayer 1 please choose you symbol.\n";
+    std::cout << "\t-----Tic-Tac-Toe-----\n";
+    std::cout << "\tWelcome to the Tic-Tac-Toe game,\n\tPlayer 1 please choose you symbol.\n";
     std::cout << "\t1 for X\t2 for O\n: ";
     std::cin >> choice;
 
