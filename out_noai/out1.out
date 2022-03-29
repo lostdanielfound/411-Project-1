@@ -1,0 +1,29 @@
+	-----Tic-Tac-Toe-----
+	Welcome to the Tic-Tac-Toe game,
+	Player 1 please choose you symbol.
+	1 for X	2 for O
+: 
+Now please enter the playboard's dimension
+you would want to play in the game in.
+: 
+Turn 0
+---------
+|   |   |
+|   |   |
+---------
+Player 1, Please pick a spot between 1-9 on the board: Turn 1
+---------
+| X |   |
+|   |   |
+---------
+Player 2, Please pick a spot between 1-9 on the board: Turn 2
+---------
+| X | O |
+|   |   |
+---------
+Player 1, Please pick a spot between 1-9 on the board: Turn 3
+---------
+| X | O |
+| X |   |
+---------
+Player 1 is the Winner!

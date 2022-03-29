@@ -50,9 +50,10 @@ int main()
 int Introduction(Player* p1, Player* p2) 
 {
     int choice = -1; 
+    char c; 
     std::cout << "\t-----Tic-Tac-Toe-----\n";
     std::cout << "\tWelcome to the Tic-Tac-Toe game,\n\tPlayer 1 please choose you symbol.\n";
-    std::cout << "\t1 for X\t2 for O\n: ";
+    std::cout << "\t1 for X\t2 for O\n\t: ";
     std::cin >> choice;
 
     if (choice == 1)
@@ -67,8 +68,15 @@ int Introduction(Player* p1, Player* p2)
         p2->symbol = 'X';
     }
 
+    std::cout << "\n\tWould you like to have Player 2 as an A.I?\n\tY or N: ";
+    std::cin >> c; 
+
+    /* Yes to playing with an A.I :D */
+    if (std::toupper(c) == 'Y') { p2->ai = true; }
+    
+
     /* Getting the N dimension of the playboard */
-    std::cout << "\nNow please enter the playboard's dimension\nyou would want to play in the game in.\n: ";
+    std::cout << "\n\tNow please enter the playboard's dimension\n\tyou would want to play in the game in.\n\t: ";
     std::cin >> choice; 
     std::cout << "\n";
 
@@ -87,7 +95,17 @@ int Turn(Player* p1, Player* p2)
     }
     else
     {
+        /* Player 2 picks position here, this is the point of interaction 
+        for the A.i. From here the A.I should be able to determine the best 
+        move possible and select that to be the move. */
         std::cout << "Player 2, Please pick a spot between 1-9 on the board: ";
+        if (p2->ai)
+        {
+            /* A.i's turn to pick position */
+            
+        }
+        
+
         std::cin >> pos;
     }
     

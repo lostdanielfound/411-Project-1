@@ -1,0 +1,185 @@
+	-----Tic-Tac-Toe-----
+	Welcome to the Tic-Tac-Toe game,
+	Player 1 please choose you symbol.
+	1 for X	2 for O
+: 
+Now please enter the playboard's dimension
+you would want to play in the game in.
+: 
+Turn 0
+------------------------
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 1, Please pick a spot between 1-9 on the board: Turn 1
+------------------------
+| X |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 2, Please pick a spot between 1-9 on the board: Turn 2
+------------------------
+| X | O |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 1, Please pick a spot between 1-9 on the board: Turn 3
+------------------------
+| X | O | X |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 2, Please pick a spot between 1-9 on the board: Turn 4
+------------------------
+| X | O | X | O |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 1, Please pick a spot between 1-9 on the board: Turn 5
+------------------------
+| X | O | X | O | X |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 2, Please pick a spot between 1-9 on the board: Turn 6
+------------------------
+| X | O | X | O | X |
+| O |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 1, Please pick a spot between 1-9 on the board: Turn 7
+------------------------
+| X | O | X | O | X |
+| O | X |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 2, Please pick a spot between 1-9 on the board: Turn 8
+------------------------
+| X | O | X | O | X |
+| O | X | O |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 1, Please pick a spot between 1-9 on the board: Turn 9
+------------------------
+| X | O | X | O | X |
+| O | X | O | X |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 2, Please pick a spot between 1-9 on the board: Turn 10
+------------------------
+| X | O | X | O | X |
+| O | X | O | X | O |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 1, Please pick a spot between 1-9 on the board: Turn 11
+------------------------
+| X | O | X | O | X |
+| O | X | O | X | O |
+| X |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 2, Please pick a spot between 1-9 on the board: Turn 12
+------------------------
+| X | O | X | O | X |
+| O | X | O | X | O |
+| X | O |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 1, Please pick a spot between 1-9 on the board: Turn 13
+------------------------
+| X | O | X | O | X |
+| O | X | O | X | O |
+| X | O | X |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 2, Please pick a spot between 1-9 on the board: Turn 14
+------------------------
+| X | O | X | O | X |
+| O | X | O | X | O |
+| X | O | X | O |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 1, Please pick a spot between 1-9 on the board: Turn 15
+------------------------
+| X | O | X | O | X |
+| O | X | O | X | O |
+| X | O | X | O | X |
+|   |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 2, Please pick a spot between 1-9 on the board: Turn 16
+------------------------
+| X | O | X | O | X |
+| O | X | O | X | O |
+| X | O | X | O | X |
+| O |   |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 1, Please pick a spot between 1-9 on the board: Turn 17
+------------------------
+| X | O | X | O | X |
+| O | X | O | X | O |
+| X | O | X | O | X |
+| O | X |   |   |   |
+|   |   |   |   |   |
+------------------------
+Player 2, Please pick a spot between 1-9 on the board: Turn 18
+------------------------
+| X | O | X | O | X |
+| O | X | O | X | O |
+| X | O | X | O | X |
+| O | X | O |   |   |
+|   |   |   |   |   |
+------------------------
+Player 1, Please pick a spot between 1-9 on the board: Turn 19
+------------------------
+| X | O | X | O | X |
+| O | X | O | X | O |
+| X | O | X | O | X |
+| O | X | O | X |   |
+|   |   |   |   |   |
+------------------------
+Player 2, Please pick a spot between 1-9 on the board: Turn 20
+------------------------
+| X | O | X | O | X |
+| O | X | O | X | O |
+| X | O | X | O | X |
+| O | X | O | X | O |
+|   |   |   |   |   |
+------------------------
+Player 1, Please pick a spot between 1-9 on the board: Turn 21
+------------------------
+| X | O | X | O | X |
+| O | X | O | X | O |
+| X | O | X | O | X |
+| O | X | O | X | O |
+| X |   |   |   |   |
+------------------------
+Player 1 is the Winner!

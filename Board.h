@@ -12,6 +12,8 @@ private:
 public:
     Board(int dimension);
     ~Board(); 
+
+    char** boardView(); 
     void Draw(); 
     int Insert(int position, char symbol);
     void reset(); 
