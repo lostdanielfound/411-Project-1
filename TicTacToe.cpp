@@ -90,7 +90,7 @@ int Turn(Player* p1, Player* p2)
     if (p1->priority)
     {
         /* If p1 goes first */
-        std::cout << "Player 1, Please pick a spot between 1-9 on the board: ";
+        std::cout << "Player 1, Please pick a spot between on the board: ";
         std::cin >> pos; 
     }
     else
@@ -98,7 +98,7 @@ int Turn(Player* p1, Player* p2)
         /* Player 2 picks position here, this is the point of interaction 
         for the A.i. From here the A.I should be able to determine the best 
         move possible and select that to be the move. */
-        std::cout << "Player 2, Please pick a spot between 1-9 on the board: ";
+        std::cout << "Player 2, Please pick a spot between on the board: ";
         if (p2->ai)
         {
             /* A.i's turn to pick position */
