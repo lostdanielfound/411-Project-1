@@ -1,3 +1,14 @@
+/**
+ * @file Board.cpp
+ * @author Daniel Guzman (danielsonguzman2000@gmail.com)
+ * @brief Function definitions of function phototypes in Board.h
+ * @version 0.1
+ * @date 2022-03-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include <iostream>
 #include <iomanip> 
 #include "Board.h"
@@ -40,7 +51,6 @@ Board::~Board()
  */
 void Board::Draw()
 {
-    //std::cout << "----Turn  " << turnCount << "----\n";
     std::cout << "Turn " << turnCount << "\n";
     std::cout << std::setfill('-') << std::setw(dimension*5) << "-\n"; 
     for (int i = 0; i < dimension; i++)
@@ -137,6 +147,7 @@ int Board::Insert(int position, char symbol)
 void Board::reset()
 {
     turnCount = 0; 
+    /* Reset the board here */
 }
 
 /**

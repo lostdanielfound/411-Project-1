@@ -1,3 +1,14 @@
+/**
+ * @file TicTacToe.cpp
+ * @author Daniel Guzman (danielsonguzman2000@gmail.com)
+ * @brief Main file for TicTacToe application
+ * @version 0.1
+ * @date 2022-03-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include <iostream> 
 #include "Board.h"
 #include "Player.h"
