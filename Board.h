@@ -29,6 +29,7 @@ public:
     int Insert(int position, char symbol);
     void reset(); 
     bool CheckState(); 
+    bool filled(); 
 };
 
 #endif

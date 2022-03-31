@@ -12,17 +12,19 @@
 #include <iostream> 
 #include "Board.h"
 #include "Player.h"
+#include "A.i_helper_functions.h"
 
 int Introduction(Player*, Player*);
 int Turn(Player*, Player*);
 
+Player *player1 = new Player();
+Player *player2 = new Player();
+
+Board playingBoard(Introduction(player1, player2));
+
 int main()
 {
-    Player *player1 = new Player();
-    Player *player2 = new Player();
-    player2->priority = false; 
 
-    Board playingBoard(Introduction(player1, player2));
     while (1)
     {
         /* player1 should go first */
@@ -34,6 +36,14 @@ int main()
                 /* The last player that inserted has just won the game! */
                 playingBoard.Draw();
                 std::cout << "Player " << (player1->priority == true ? "1" : "2") << " is the Winner!\n";
+                break; 
+            }
+            else if (playingBoard.filled())
+            {
+                /* Playing board is all out of position 
+                so thus it's a game over */
+                playingBoard.Draw();
+                std::cout << "Draw! Game Over\n";
                 break; 
             }
             
@@ -60,6 +70,8 @@ int main()
 
 int Introduction(Player* p1, Player* p2) 
 {
+    p2->priority = false; 
+
     int choice = -1; 
     char c; 
     std::cout << "\t-----Tic-Tac-Toe-----\n";
@@ -113,11 +125,13 @@ int Turn(Player* p1, Player* p2)
         if (p2->ai)
         {
             /* A.i's turn to pick position */
-            
+            pos = optimalMove(playingBoard, p2->symbol);
+        }
+        else
+        {
+            std::cin >> pos;
         }
         
-
-        std::cin >> pos;
     }
     
     return pos; 

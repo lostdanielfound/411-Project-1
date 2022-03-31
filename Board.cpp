@@ -218,3 +218,22 @@ bool Board::CheckState()
     
     return false; //No winner yet   
 }
+
+/**
+ * @brief Simply checks to see if there is no positions left
+ * 
+ * @return true, if no position available
+ * @return false, otherwise
+ */
+bool Board::filled()
+{
+    for (int i = 0; i < dimension; i++)
+    {
+        for (int j = 0; j < dimension; j++)
+        {
+            if (board[i][j] == '-') { return false; }
+        }
+    }
+    
+    return true; 
+}
