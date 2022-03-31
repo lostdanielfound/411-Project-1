@@ -1,10 +1,69 @@
 #include "A.i_helper_functions.h"
+#include <algorithm>
+#include <limits.h>
 
 
-
-int evaluate(Board board)
+/**
+ * @brief A function to evaluate and score a current 
+ * state of the board. The score of game state is calculated 
+ * by counting the most amount of pieces lined up either within 
+ * a row, column, or diagonal. 
+ * 
+ * @param board 
+ * @return The min or max score of the board given the symbol of the player
+ */
+int evaluate(Board board, char symbol)
 {
+    int score = 0, tempscore = 0; 
 
+    //Checking rows
+    for (int i = 0; i < board.dimension; i++)
+    {
+        /* increment count if we found a match */
+        for (int j = 1; j < board.dimension; j++) 
+        { 
+            if (board.board[i][0] == board.board[i][j] && (board.board[i][0] != '-') && (symbol == 'O')) { tempscore--; }
+            else if (board.board[i][0] == board.board[i][j] && (board.board[i][0] != '-') && (symbol == 'X')) { tempscore++; }
+        }
+        if (symbol == '0') { score = std::min(score, tempscore); }
+        else if (symbol == 'X') { score = std::max(score, tempscore); }
+    }
+
+    //Checking Columns
+    for (int i = 0; i < board.dimension; i++)
+    {
+        /* increment count if we found a match */
+        for (int j = 1; j < board.dimension; j++) 
+        { 
+            if (board.board[0][i] == board.board[j][i] && (board.board[0][i] != '-') && (symbol == 'O')) { tempscore--; } 
+            else if (board.board[0][i] == board.board[j][i] && (board.board[0][i] != '-') && (symbol == 'X')) { tempscore++; } 
+        }
+        if (symbol == '0') { score = std::min(score, tempscore); }
+        else if (symbol == 'X') { score = std::max(score, tempscore); }
+    }
+
+    //Checking left diagonals 
+    for (int i = 1; i < board.dimension; i++)
+    {
+        /* increment count if we found a match */
+        if (board.board[0][0] == board.board[i][i] && (board.board[0][0] != '-') && (symbol == 'O')) { tempscore--; }
+        else if (board.board[0][0] == board.board[i][i] && (board.board[0][0] != '-') && (symbol == 'X')) { tempscore++; }
+    }
+    if (symbol == '0') { score = std::min(score, tempscore); }
+    else if (symbol == 'X') { score = std::max(score, tempscore); }
+
+    //Checking right diagonals 
+    for (int i = 1; i < board.dimension; i++)
+    {
+        /* increment count if we found a match */
+        if (board.board[0][board.dimension-1] == board.board[i][board.dimension-i-1] && (board.board[0][board.dimension-1] != '-') && (symbol == 'O')) { tempscore--; }
+        else if (board.board[0][board.dimension-1] == board.board[i][board.dimension-i-1] && (board.board[0][board.dimension-1] != '-') && (symbol == 'X')) { tempscore++; }
+    }
+    if (symbol == '0') { score = std::min(score, tempscore); }
+    else if (symbol == 'X') { score = std::max(score, tempscore); }
+    
+    return score;
+    
 }
 
 /**
@@ -13,17 +72,16 @@ int evaluate(Board board)
  * the game. 
  * 
  * @param depth The total and current depth of the decision tree 
- * @param index 
  * @param ismin If True we are minimizing the game otherwise we are maximizing. 
  * @param board The current game board
- * @return int 
+ * @return the score of the node states 
  */
-int minimax(int depth, int index, bool ismin, Board board)
+int minimax(int depth, bool ismin, Board board, char symbol)
 {
     /* Look at the current state of the board 
     and evaluate it by giving it a score. */
-    int score = evaluate(board); 
-    if (score != 0) { return score; }
+    int score = evaluate(board, symbol); 
+    if (score == 3 or score == -3) { return score; }
 
     /* If the board is filled then we can't assign 
     a score and thus ends in a draw */
@@ -31,12 +89,73 @@ int minimax(int depth, int index, bool ismin, Board board)
     
     if (ismin)
     {
-        /* Traverse through all the positions  */
+        /* Traverse through all the positions
+        to find the best position to place. */
+        int bestScore = INT_MAX;
+        for (int i = 0; i < board.dimension; i++)
+        {
+            for (int j = 0; j < board.dimension; j++)
+            {
+                if (board.board[i][j] == '-')
+                {
+                    /* placed a psuedo piece on the board */
+                    board.board[i][j] = symbol;
+                }
+                
+                score = minimax(depth + 1, false, board, 'X');
+                bestScore = std::min(bestScore, score);
+                board.board[i][j] = '-'; 
+            }
+        }
+        return bestScore;
+    }
+
+    int bestScore = INT_MIN;
+    for (int i = 0; i < board.dimension; i++)
+    {
+        for (int j = 0; j < board.dimension; j++)
+        {
+            if (board.board[i][j] == '-')
+            {
+                /* placed a psuedo piece on the board */
+                board.board[i][j] = symbol; 
+            }
+            
+            score = minimax(depth + 1, true, board, 'O');
+            bestScore = std::min(bestScore, score); 
+            board.board[i][j] = '-';
+        }
+        
     }
     
+    return bestScore;
 }
 
-int optimalMove(Board board)
+int optimalMove(Board board, char symbol)
 {
-    
+    int position = 1; //current position on the board
+    int bestMove = 1; //optimal position on the board
+    int bestScore = INT_MAX; 
+
+    for (int i = 0; i < board.dimension; i++)
+    {
+        for (int j = 0; j < board.dimension; j++)
+        {
+            if (board.board[i][j] == '-')
+            {
+                /* Making the inital move */
+                board.board[i][j] = symbol; 
+
+                if (minimax(0, true, board, symbol) < bestScore) 
+                {
+                    bestMove = position;
+                }
+                
+            }
+            
+            position++; 
+        }
+    }
+
+    return bestMove; 
 }

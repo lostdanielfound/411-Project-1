@@ -13,14 +13,13 @@
 #define BOARD_H
 class Board
 {
-private:
+public:
     /* attributes of the board
     will be stored here. */
     char** board; 
     int dimension;
-
     int turnCount = 0; 
-public:
+
     Board(int dimension);
     ~Board(); 
 
