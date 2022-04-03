@@ -15,7 +15,7 @@
 #include "Board.h"
 
 int evaluate(Board board, char symbol); 
-int minimax(int depth, bool ismin, Board board, char symbol);
+int minimax(bool ismin, Board board, char symbol);
 int optimalMove(Board board, char symbol); 
 
 #endif // A_I_FUNC_H

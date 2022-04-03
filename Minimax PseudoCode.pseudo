@@ -1,0 +1,33 @@
+function minimax(depth, ismin, Board, symbol)
+    score = evaluate(board, symbol)
+
+    if (terminated_state(board))
+        return score
+
+    if (board.filled())
+        return 0
+
+    if (ismin)
+
+        bestScore = INT_MAX
+
+        for i in 0 to board.dimension 
+            for j in 0 to board.dimension
+                if (board[i][j] == EMPTY)
+                    board[i][j] = symbol
+                    score = minimax(depth + 1, false, board, 'X')
+                    bestScore = min(bestScore, score)
+                    board[i][j] = EMPTY
+        return bestScore
+    else if (ismax)
+
+        bestScore = INT_MIN
+
+        for i in 0 to board.dimension
+            for j in 0 to board.dimension
+                if (board[i][j] == EMPTY) 
+                    board[i][j] = symbol
+                    score = minimax(depth + 1, true, board, 'O')
+                    bestScore = max(bestScore, score)
+                    board[i][j] = EMPTY
+        return bestScore

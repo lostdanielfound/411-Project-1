@@ -71,12 +71,11 @@ int evaluate(Board board, char symbol)
  * value the A.i can obtain when minimizing the gains of 
  * the game. 
  * 
- * @param depth The total and current depth of the decision tree 
  * @param ismin If True we are minimizing the game otherwise we are maximizing. 
  * @param board The current game board
  * @return the score of the node states 
  */
-int minimax(int depth, bool ismin, Board board, char symbol)
+int minimax(bool ismin, Board board, char symbol)
 {
     /* Look at the current state of the board 
     and evaluate it by giving it a score. */
@@ -101,7 +100,7 @@ int minimax(int depth, bool ismin, Board board, char symbol)
                     /* placed a psuedo piece on the board */
                     board.board[i][j] = symbol;
 
-                    score = minimax(depth + 1, false, board, 'X');
+                    score = minimax(false, board, 'X');
                     bestScore = std::min(bestScore, score);
 
                     /* Remove the psuedo piece */
@@ -122,8 +121,8 @@ int minimax(int depth, bool ismin, Board board, char symbol)
                 /* placed a psuedo piece on the board */
                 board.board[i][j] = symbol; 
 
-                score = minimax(depth + 1, true, board, 'O');
-                bestScore = std::min(bestScore, score); 
+                score = minimax(true, board, 'O');
+                bestScore = std::max(bestScore, score); 
 
                 /* Remove the psuedo piece */
                 board.board[i][j] = '-';
@@ -142,7 +141,7 @@ int optimalMove(Board board, char symbol)
     int score; 
     int bestScore;
     if (symbol == 'O') { bestScore = INT_MAX; } //Setting current bestScore if A.i is '0'
-    else if (symbol == 'X') {bestScore = INT_MIN; } //Setting current bestScore if A.i is 'X'
+    else if (symbol == 'X') { bestScore = INT_MIN; } //Setting current bestScore if A.i is 'X'
 
     for (int i = 0; i < board.dimension; i++)
     {
@@ -150,10 +149,10 @@ int optimalMove(Board board, char symbol)
         {
             if (board.board[i][j] == '-')
             {
-                /* Placing psuedo piece */
+                /* Placing the inital (root) psuedo piece */
                 board.board[i][j] = symbol; 
 
-                score = minimax(0, (symbol == 'O' ? true : false), board, symbol);
+                score = minimax((symbol == 'O' ? true : false), board, symbol);
 
                 if (symbol == 'O')
                 {
@@ -164,7 +163,7 @@ int optimalMove(Board board, char symbol)
                     if (score > bestScore) { bestMove = position; }
                 }
                 
-                /* Removing psuedo piece */
+                /* Removing the root psuedo piece */
                 board.board[i][j] = '-';
             }
             
