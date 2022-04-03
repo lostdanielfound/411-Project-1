@@ -11,19 +11,19 @@
 
 #ifndef BOARD_H
 #define BOARD_H
+#include <vector>
+
 class Board
 {
 public:
     /* attributes of the board
     will be stored here. */
-    char** board; 
+    std::vector<std::vector<char>> board; 
     int dimension;
     int turnCount = 0; 
 
     Board(int dimension);
-    ~Board(); 
 
-    char** boardView(); 
     void Draw(); 
     int Insert(int position, char symbol);
     void reset(); 

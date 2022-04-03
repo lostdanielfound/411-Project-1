@@ -81,7 +81,7 @@ int minimax(int depth, bool ismin, Board board, char symbol)
     /* Look at the current state of the board 
     and evaluate it by giving it a score. */
     int score = evaluate(board, symbol); 
-    if (score == 3 or score == -3) { return score; }
+    if (score == (board.dimension-1) || score == -(board.dimension-1)) { return score; }
 
     /* If the board is filled then we can't assign 
     a score and thus ends in a draw */
@@ -100,11 +100,13 @@ int minimax(int depth, bool ismin, Board board, char symbol)
                 {
                     /* placed a psuedo piece on the board */
                     board.board[i][j] = symbol;
+
+                    score = minimax(depth + 1, false, board, 'X');
+                    bestScore = std::min(bestScore, score);
+
+                    /* Remove the psuedo piece */
+                    board.board[i][j] = '-'; 
                 }
-                
-                score = minimax(depth + 1, false, board, 'X');
-                bestScore = std::min(bestScore, score);
-                board.board[i][j] = '-'; 
             }
         }
         return bestScore;
@@ -119,13 +121,14 @@ int minimax(int depth, bool ismin, Board board, char symbol)
             {
                 /* placed a psuedo piece on the board */
                 board.board[i][j] = symbol; 
+
+                score = minimax(depth + 1, true, board, 'O');
+                bestScore = std::min(bestScore, score); 
+
+                /* Remove the psuedo piece */
+                board.board[i][j] = '-';
             }
-            
-            score = minimax(depth + 1, true, board, 'O');
-            bestScore = std::min(bestScore, score); 
-            board.board[i][j] = '-';
         }
-        
     }
     
     return bestScore;
@@ -135,7 +138,11 @@ int optimalMove(Board board, char symbol)
 {
     int position = 1; //current position on the board
     int bestMove = 1; //optimal position on the board
-    int bestScore = INT_MAX; 
+    
+    int score; 
+    int bestScore;
+    if (symbol == 'O') { bestScore = INT_MAX; } //Setting current bestScore if A.i is '0'
+    else if (symbol == 'X') {bestScore = INT_MIN; } //Setting current bestScore if A.i is 'X'
 
     for (int i = 0; i < board.dimension; i++)
     {
@@ -143,14 +150,22 @@ int optimalMove(Board board, char symbol)
         {
             if (board.board[i][j] == '-')
             {
-                /* Making the inital move */
+                /* Placing psuedo piece */
                 board.board[i][j] = symbol; 
 
-                if (minimax(0, true, board, symbol) < bestScore) 
+                score = minimax(0, (symbol == 'O' ? true : false), board, symbol);
+
+                if (symbol == 'O')
                 {
-                    bestMove = position;
+                    if (score < bestScore) { bestMove = position; }
+                }
+                else if (symbol == 'X')
+                {
+                    if (score > bestScore) { bestMove = position; }
                 }
                 
+                /* Removing psuedo piece */
+                board.board[i][j] = '-';
             }
             
             position++; 

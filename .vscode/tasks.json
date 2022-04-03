@@ -8,10 +8,12 @@
 			"args": [
 				"-fdiagnostics-color=always",
 				"-g",
-				"${file}",
-				"Player.h",
-				"Board.h",
-				"Board.cpp",
+                "${file}",
+                "Player.h",
+                "Board.h",
+                "Board.cpp",
+                "A.i_helper_functions.h",
+                "A.i_helper_functions.cpp",
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}"
 			],

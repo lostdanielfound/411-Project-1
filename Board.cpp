@@ -15,26 +15,21 @@
 
 Board::Board(int dimension)
 {
-    board = new char *[dimension];
-
-    /* Making the two dimension array */
-    for (int i = 0; i < dimension; i++) { board[i] = new char[dimension]; }
 
     for (int i = 0; i < dimension; i++)
     {
-        /* Filling the 2d array with '-' */
-        for (int j = 0; j < dimension; j++) { board[i][j] = '-'; }
+        std::vector<char> row;
+        for (int j = 0; j < dimension; j++)
+        {
+            /* Filling the 2d array with '-' */
+            row.push_back('-');
+        }
+        board.push_back(row); 
     }
+    
 
     this->dimension = dimension; 
 }
-
-Board::~Board()
-{
-    for (int i = 0; i < dimension; i++) { delete [] board[i]; } 
-    delete [] board; 
-}
-
 
 
 /**
