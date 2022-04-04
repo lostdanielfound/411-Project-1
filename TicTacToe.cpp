@@ -7,6 +7,25 @@
  * 
  * @copyright Copyright (c) 2022
  * 
+ * 
+ * 
+ * To run tests against this program please pick a test.in file from 
+ * either the tests_ai or tests_noai folder. 
+ * 
+ * Picking a test.in file from the tests_ai folder will test 
+ * the program with an A.i acting as the oppenent
+ * 
+ * Picking a test.in file from the tests_noai folder will test
+ * the program allowing two players to play Tic Tac Toe with 
+ * each other. 
+ * 
+ * To run the test you would need to "pipe" the input 
+ * into the program. 
+ * 
+ * Linux example: 
+ * ./TicTacToe < /tests_noai/test1.in  
+ * ./TicTacToe < /tests_ai/test2.in 
+ * 
  */
 
 #include <iostream> 

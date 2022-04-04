@@ -1,4 +1,4 @@
-function minimax(depth, ismin, Board, symbol)
+function minimax(ismin, Board, symbol)
     score = evaluate(board, symbol)
 
     if (terminated_state(board))
@@ -8,26 +8,42 @@ function minimax(depth, ismin, Board, symbol)
         return 0
 
     if (ismin)
-
+    
         bestScore = INT_MAX
 
         for i in 0 to board.dimension 
             for j in 0 to board.dimension
                 if (board[i][j] == EMPTY)
+
                     board[i][j] = symbol
-                    score = minimax(depth + 1, false, board, 'X')
+
+                    score = minimax(false, board, 'X')
                     bestScore = min(bestScore, score)
+
                     board[i][j] = EMPTY
+
         return bestScore
-    else if (ismax)
+
+    else if (!ismin)
 
         bestScore = INT_MIN
 
         for i in 0 to board.dimension
             for j in 0 to board.dimension
                 if (board[i][j] == EMPTY) 
+
                     board[i][j] = symbol
-                    score = minimax(depth + 1, true, board, 'O')
+                    
+                    score = minimax(true, board, 'O')
                     bestScore = max(bestScore, score)
+
                     board[i][j] = EMPTY
+
         return bestScore
+
+We first evaluate the current board and set a variable called score which will be used
+as a temp variable to keep track of evaluation score of available position on the board of 
+that current state. We then check to see if the board is filled or at a terminated state such that either 
+the player or A.i got a "3 in the row". From here, we check to see who's turn is it within the decision tree
+by checking if ismin is true or false. If true then we check which empty position current left on the board 
+yields the best score for that player. The same can be said if ismin is false.  

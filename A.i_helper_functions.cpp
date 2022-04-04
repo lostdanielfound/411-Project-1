@@ -14,7 +14,10 @@
  */
 int evaluate(Board board, char symbol)
 {
-    int score = 0, tempscore = 0; 
+    int score;
+    int tempscore = 0; 
+    if (symbol == 'O') { score = INT_MAX; }
+    else if (symbol == 'X') { score = INT_MIN; }
 
     //Checking rows
     for (int i = 0; i < board.dimension; i++)
@@ -22,11 +25,13 @@ int evaluate(Board board, char symbol)
         /* increment count if we found a match */
         for (int j = 1; j < board.dimension; j++) 
         { 
-            if (board.board[i][0] == board.board[i][j] && (board.board[i][0] != '-') && (symbol == 'O')) { tempscore--; }
-            else if (board.board[i][0] == board.board[i][j] && (board.board[i][0] != '-') && (symbol == 'X')) { tempscore++; }
+            if (board.board[i][0] == board.board[i][j] && (board.board[i][0] != '-') && (symbol == 'O') && (board.board[i][0] == 'O')) { tempscore--; }
+            else if (board.board[i][0] == board.board[i][j] && (board.board[i][0] != '-') && (symbol == 'X') && (board.board[i][0] == 'X')) { tempscore++; }
         }
-        if (symbol == '0') { score = std::min(score, tempscore); }
+        if (symbol == 'O') { score = std::min(score, tempscore); }
         else if (symbol == 'X') { score = std::max(score, tempscore); }
+
+        tempscore = 0; 
     }
 
     //Checking Columns
@@ -35,31 +40,35 @@ int evaluate(Board board, char symbol)
         /* increment count if we found a match */
         for (int j = 1; j < board.dimension; j++) 
         { 
-            if (board.board[0][i] == board.board[j][i] && (board.board[0][i] != '-') && (symbol == 'O')) { tempscore--; } 
-            else if (board.board[0][i] == board.board[j][i] && (board.board[0][i] != '-') && (symbol == 'X')) { tempscore++; } 
+            if (board.board[0][i] == board.board[j][i] && (board.board[0][i] != '-') && (symbol == 'O') && (board.board[0][i] == 'O')) { tempscore--; } 
+            else if (board.board[0][i] == board.board[j][i] && (board.board[0][i] != '-') && (symbol == 'X') && (board.board[0][i] == 'X')) { tempscore++; } 
         }
-        if (symbol == '0') { score = std::min(score, tempscore); }
+        if (symbol == 'O') { score = std::min(score, tempscore); }
         else if (symbol == 'X') { score = std::max(score, tempscore); }
+
+        tempscore = 0; 
     }
 
     //Checking left diagonals 
     for (int i = 1; i < board.dimension; i++)
     {
         /* increment count if we found a match */
-        if (board.board[0][0] == board.board[i][i] && (board.board[0][0] != '-') && (symbol == 'O')) { tempscore--; }
-        else if (board.board[0][0] == board.board[i][i] && (board.board[0][0] != '-') && (symbol == 'X')) { tempscore++; }
+        if (board.board[0][0] == board.board[i][i] && (board.board[0][0] != '-') && (symbol == 'O') && (board.board[0][0] == 'O')) { tempscore--; }
+        else if (board.board[0][0] == board.board[i][i] && (board.board[0][0] != '-') && (symbol == 'X') && (board.board[0][0] == 'X')) { tempscore++; }
     }
-    if (symbol == '0') { score = std::min(score, tempscore); }
+    if (symbol == 'O') { score = std::min(score, tempscore); }
     else if (symbol == 'X') { score = std::max(score, tempscore); }
+
+    tempscore = 0; 
 
     //Checking right diagonals 
     for (int i = 1; i < board.dimension; i++)
     {
         /* increment count if we found a match */
-        if (board.board[0][board.dimension-1] == board.board[i][board.dimension-i-1] && (board.board[0][board.dimension-1] != '-') && (symbol == 'O')) { tempscore--; }
-        else if (board.board[0][board.dimension-1] == board.board[i][board.dimension-i-1] && (board.board[0][board.dimension-1] != '-') && (symbol == 'X')) { tempscore++; }
+        if (board.board[0][board.dimension-1] == board.board[i][board.dimension-i-1] && (board.board[0][board.dimension-1] != '-') && (symbol == 'O') && (board.board[0][board.dimension-1] == 'O')) { tempscore--; }
+        else if (board.board[0][board.dimension-1] == board.board[i][board.dimension-i-1] && (board.board[0][board.dimension-1] != '-') && (symbol == 'X') && (board.board[0][board.dimension-1] == 'X')) { tempscore++; }
     }
-    if (symbol == '0') { score = std::min(score, tempscore); }
+    if (symbol == 'O') { score = std::min(score, tempscore); }
     else if (symbol == 'X') { score = std::max(score, tempscore); }
     
     return score;
@@ -152,7 +161,7 @@ int optimalMove(Board board, char symbol)
                 /* Placing the inital (root) psuedo piece */
                 board.board[i][j] = symbol; 
 
-                score = minimax((symbol == 'O' ? true : false), board, symbol);
+                score = minimax((symbol == 'O' ? false : true), board, (symbol == 'O' ? 'X' : 'O'));
 
                 if (symbol == 'O')
                 {
