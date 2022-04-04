@@ -26,6 +26,11 @@
  * ./TicTacToe < /tests_noai/test1.in  
  * ./TicTacToe < /tests_ai/test2.in 
  * 
+ * 
+ * Bugs: 
+ * A.i doesn't correctly pick the most optimal move, 
+ * A.i stalls when playing on a board higher than 3x3. 
+ * 
  */
 
 #include <iostream> 
